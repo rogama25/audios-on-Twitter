@@ -37,7 +37,7 @@ class Settings:
 				else:
 					raise ValueError("Settings file appears to be corrupt.")
 		for attr, value in self.__dict__.items():
-			if attr is None:
+			if value is None:
 				raise ValueError("Missing settings")
 
 	def edit_settings(self):
