@@ -27,10 +27,8 @@ class Settings:
 					self.__dict__[key] = value
 				else:
 					raise ValueError("Settings file appears to be corrupt.")
-		for attr, value in self.__dict__.items():
-			if value is None:
-				if attr is not "telegram_user_id":
-					raise ValueError("Missing settings.")
+		if not self.attributes_complete():
+			raise ValueError("Missing settings.")
 	
 	def edit_settings(self):
 		while True:
