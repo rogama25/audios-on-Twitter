@@ -1,16 +1,17 @@
 from main import cls
 import sys
+import os
 
 
 class Settings:
-	telegram_key = None
-	telegram_user_id = None
-	consumer_key = None
-	consumer_secret = None
-	access_token = None
-	access_secret = None
 	
 	def __init__(self):
+		self.telegram_key = None
+		self.telegram_user_id = None
+		self.consumer_key = None
+		self.consumer_secret = None
+		self.access_token = None
+		self.access_secret = None
 		try:
 			self.load_file("config.cfg")
 		except ValueError:
@@ -18,6 +19,9 @@ class Settings:
 			self.edit_settings()
 	
 	def load_file(self, file: str):
+		if not os.path.isfile(file):
+			with open(file, "w+"):
+				pass
 		with open(file, "r+") as f:
 			for line in f:
 				key, value = line.split("=", 1)
@@ -69,9 +73,10 @@ class Settings:
 					return
 				else:
 					for attr in missing:
-						attr.replace('_', ' ')
-						attr.capitalize()
+						attr = attr.replace('_', ' ')
+						attr = attr.capitalize()
 						print(attr + " is missing. Please set it before trying to start the bot.")
+					input("Press enter to return to menu.")
 			if option == '6':
 				if self.attributes_complete():
 					self.save_settings("config.cfg")
