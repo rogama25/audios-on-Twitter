@@ -2,6 +2,10 @@ import os
 import sys
 
 
+def cls():
+	os.system('cls' if os.name == 'nt' else 'clear')
+
+
 class Settings:
 	telegram_key = None
 	telegram_user_id = None
