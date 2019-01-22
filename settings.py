@@ -1,4 +1,6 @@
 from main import cls
+import sys
+
 
 class Settings:
 	telegram_key = None
@@ -46,7 +48,8 @@ class Settings:
 				if inp != '':
 					self.telegram_key = inp
 			if option == '2':
-				if input("Are you sure you want to unlink from the current Telegram user? Press y to unlink:").lower() == 'y':
+				if input(
+						"Are you sure you want to unlink from the current Telegram user? Press y to unlink:").lower() == 'y':
 					self.telegram_user_id = None
 			if option == '3':
 				inp = input("Paste the new Twitter consumer key (press enter to ask for secret key without changing): ")
@@ -63,9 +66,38 @@ class Settings:
 				if inp != '':
 					self.access_secret = inp
 			if option == '5':
-				for attr, value in self.__dict__.items():
-					if value is None:
-						if attr is not "telegram_user_id":
-							attr.replace('_',' ')
-							attr.capitalize()
-							print(attr + " is missing. Please set it before trying to start the bot.")
+				is_complete, missing = self.attributes_complete(True)
+				if is_complete:
+					return
+				else:
+					for attr in missing:
+						attr.replace('_', ' ')
+						attr.capitalize()
+						print(attr + " is missing. Please set it before trying to start the bot.")
+			if option == '6':
+				if self.attributes_complete():
+					self.save_settings("config.cfg")
+				sys.exit()
+	
+	def save_settings(self, file: str):
+		with open(file, "w+") as f:
+			for attr, value in self.__dict__.items():
+				if value is not None:
+					f.write(attr + "=" + value)
+	
+	def attributes_complete(self, return_values: bool = False):
+		missing = []
+		for attr, value in self.__dict__.items():
+			if value is None:
+				if attr is not "telegram_user_id":
+					missing.append(attr)
+		if len(missing) == 0:
+			if return_values:
+				return True, missing
+			else:
+				return True
+		else:
+			if return_values:
+				return False, missing
+			else:
+				return False
