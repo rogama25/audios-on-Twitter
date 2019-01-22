@@ -26,18 +26,8 @@ class Settings:
 				key, value = line.split("=", 1)
 				if value.endswith("\n"):
 					value = value[:-1]
-				if key == "telegram_key":
-					self.telegram_key = value
-				elif key == "telegram_user_id":
-					self.telegram_user_id = value
-				elif key == "consumer_key":
-					self.consumer_key = value
-				elif key == "consumer_secret":
-					self.consumer_secret = value
-				elif key == "access_token":
-					self.access_token = value
-				elif key == "access_secret":
-					self.access_secret = value
+				if key in list(self.__dict__.keys()):
+					self.__dict__[key] = value
 				else:
 					raise ValueError("Settings file appears to be corrupt.")
 		for attr, value in self.__dict__.items():
