@@ -21,6 +21,16 @@ def main():
 					link_key = link_key + str(random.randint(0,9))
 				print("Please send your bot the following code as a Telegram message: " + link_key)
 			
+			@tg.message_handler(content_types=['voice'])
+			def tg_audio_handler(message):
+				if message.from_user.id == cfg.telegram_user_id:
+					voice_info = tg.get_file(message.voice.file_id)
+					downloaded_voice = tg.download_file(voice_info.file_path)
+					if not os.path.exists("media"):
+						os.makedirs("media")
+					with open("media/"+str(message.voice.file_id)+".ogg", "wb") as file:
+						file.write(downloaded_voice)
+			
 			@tg.message_handler(func=lambda msg: True)
 			def tg_message_handler(message):
 				if cfg.telegram_user_id is None:
@@ -33,8 +43,8 @@ def main():
 						match = re.search("https://twitter.com/[a-z|A-Z|0-9|_]+/status/[0-9]+",message.text)
 						if match is not None:
 							url = message.text[match.start():match.end()]
-							foo, tweetid = url.rsplit("/", 1)
-							print(tweetid)
+							foo, tweet_id = url.rsplit("/", 1)
+							print(tweet_id)
 		
 			tg.polling()
 			print("Bot stopped. It may be because you pressed CTRL-C or because an error occurred. Press enter.")
@@ -42,7 +52,7 @@ def main():
 			cfg.edit_settings()
 			
 		except ValueError as e:
-			print("Error.")
+			print("Error. " + e.args)
 			sys.exit()
 
 
