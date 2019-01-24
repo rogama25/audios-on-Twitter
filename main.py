@@ -6,6 +6,7 @@ import random
 import re
 import time
 from util import press_enter
+import converter
 
 
 def main():
@@ -28,8 +29,11 @@ def main():
 					downloaded_voice = tg.download_file(voice_info.file_path)
 					if not os.path.exists("media"):
 						os.makedirs("media")
-					with open("media/"+str(message.voice.file_id)+".ogg", "wb") as file:
+					filename = "media/"+str(message.voice.file_id)
+					duration = message.voice.duration
+					with open(filename+".ogg", "wb") as file:
 						file.write(downloaded_voice)
+					converter.convert(filename,duration)
 			
 			@tg.message_handler(func=lambda msg: True)
 			def tg_message_handler(message):
