@@ -13,3 +13,6 @@ class TGBot:
 			self.bot.get_me()
 		except ApiException:
 			raise ValueError("Invalid Telegram API key.")
+	
+	def send_msg(self, text:str):
+		self.bot.send_message(self.user,text)
