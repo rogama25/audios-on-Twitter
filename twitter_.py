@@ -11,12 +11,16 @@ class Twitter:
 			raise ValueError("Twitter credentials are wrong.")
 		
 	def set_reply(self,reply_id:int):
-		try:
-			tweet = self.tw.GetStatus(reply_id)
-			self.reply_id = reply_id
-			return tweet.full_text, tweet.user.screen_name
-		except twitter.TwitterError as e:
+		if reply_id is not None:
+			try:
+				tweet = self.tw.GetStatus(reply_id)
+				self.reply_id = int(reply_id)
+				return tweet.full_text, tweet.user.screen_name
+			except twitter.TwitterError as e:
+				return None
+		else:
+			self.reply_id = None
 			return None
 
-	def tweet(self,media:str):
-		self.tw.PostUpdate(media=media,in_reply_to_status_id=self.reply_id)
+	def tweet(self,media:str ):
+		self.tw.PostUpdate(media=media,in_reply_to_status_id=self.reply_id,status="",auto_populate_reply_metadata=True)

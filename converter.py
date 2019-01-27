@@ -11,4 +11,4 @@ def convert(input_file:str, duration:float):
 	video = video.set_duration(duration)
 	audio = moviepy.AudioFileClip(input_file+".ogg")
 	video = video.set_audio(audio)
-	video.write_videofile(input_file+".mp4",fps=30)
+	video.write_videofile(input_file+".mp4",fps=30, audio_codec="aac")
