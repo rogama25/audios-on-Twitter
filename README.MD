@@ -1,0 +1,1 @@
+To use this program, you need first to create a Telegram bot talking to http://t.me/botfather and create a dev account in http://developer.twitter.com and an app, with an access token for your account with read and write permissions.
