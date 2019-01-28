@@ -10,6 +10,9 @@ import converter
 
 
 def main():
+	if os.name == 'nt':
+		from util import download_ffmpeg
+		download_ffmpeg()
 	random.seed()
 	cfg = settings.Settings()
 	while True:
@@ -66,8 +69,9 @@ def main():
 							if message.text == "/cancel":
 								tw.set_reply(None)
 								tgclass.send_msg("Now posting as a Tweet.")
-		
+			
 			tg.polling()
+			tg.stop_bot()
 			print("Bot stopped. It may be because you pressed CTRL-C or because an error occurred. Press enter.")
 			press_enter()
 			cfg.edit_settings()
@@ -75,6 +79,8 @@ def main():
 		except ValueError as e:
 			print("Error. " + e.args)
 			sys.exit()
+		except KeyboardInterrupt:
+			pass
 
 
 if __name__ == "__main__":
