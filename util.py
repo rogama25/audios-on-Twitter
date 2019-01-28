@@ -12,10 +12,11 @@ def press_enter():
 
 def download_ffmpeg():
 	if not os.path.exists("ffmpeg.exe"):
-		import urllib.request
-		import zipfile
-		print("Downloading FFMPEG. Please wait...")
-		urllib.request.urlretrieve("https://raw.githubusercontent.com/rogama25/audios-on-Twitter/master/ffmpeg.zip", "ffmpeg.zip")
+		if not os.path.exists("ffmpeg.zip"):
+			import urllib.request
+			import zipfile
+			print("Downloading FFMPEG. Please wait...")
+			urllib.request.urlretrieve("https://raw.githubusercontent.com/rogama25/audios-on-Twitter/master/ffmpeg.zip", "ffmpeg.zip")
 		zip = zipfile.ZipFile("ffmpeg.zip")
 		zip.extractall()
 		os.remove("ffmpeg.zip")
