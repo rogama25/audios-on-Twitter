@@ -22,29 +22,29 @@ class Settings:
 			self.edit_settings()
 	
 	def load_file(self, file: str):
-		if not os.path.isfile(file):
-			with open(file, "w+"):
-				pass
-		with open(file, "r+") as f:
-			not_numeric = False
-			for line in f:
-				key, value = line.split("=", 1)
-				if value.endswith("\n"):
-					value = value[:-1]
-				if key in list(self.__dict__.keys()):
-					if key != "telegram_user_id":
-						self.__dict__[key] = value
-					else:
-						if value.isdigit():
-							self.telegram_user_id = int(value)
+		if os.path.isfile(file):
+			with open(file, "r+") as f:
+				not_numeric = False
+				for line in f:
+					key, value = line.split("=", 1)
+					if value.endswith("\n"):
+						value = value[:-1]
+					if key in list(self.__dict__.keys()):
+						if key != "telegram_user_id":
+							self.__dict__[key] = value
 						else:
-							not_numeric = True
-				else:
-					raise ValueError("Settings file appears to be corrupt.")
-			if not_numeric:
-				raise ValueError("Telegram ID was not a numeric and was not saved..")
-		if not self.attributes_complete():
-			raise ValueError("Missing settings.")
+							if value.isdigit():
+								self.telegram_user_id = int(value)
+							else:
+								not_numeric = True
+					else:
+						raise ValueError("Settings file appears to be corrupt.")
+				if not_numeric:
+					raise ValueError("Telegram ID was not a numeric and was not saved..")
+			if not self.attributes_complete():
+				raise ValueError("Missing settings.")
+		else:
+			self.edit_settings()
 	
 	def edit_settings(self):
 		while True:

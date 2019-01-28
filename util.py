@@ -19,4 +19,5 @@ def download_ffmpeg():
 			urllib.request.urlretrieve("https://raw.githubusercontent.com/rogama25/audios-on-Twitter/master/ffmpeg.zip", "ffmpeg.zip")
 		zip = zipfile.ZipFile("ffmpeg.zip")
 		zip.extractall()
+		zip.close()
 		os.remove("ffmpeg.zip")
