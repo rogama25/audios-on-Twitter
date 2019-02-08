@@ -18,10 +18,10 @@ class Twitter:
 				self.reply_id = int(reply_id)
 				return tweet.full_text, tweet.user.screen_name
 			except twitter.TwitterError as e:
-				return None
+				return None, None
 		else:
 			self.reply_id = None
-			return None
+			return None, None
 	
 	def tweet(self, media: str):
 		if self.reply_id is None:
