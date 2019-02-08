@@ -106,3 +106,4 @@ venv.bak/
 .idea
 *.cfg
 media
+ffmpeg.exe
