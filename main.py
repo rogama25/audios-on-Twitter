@@ -50,6 +50,7 @@ def main():
 				if cfg.telegram_user_id is None:
 					if message.text == link_key:
 						cfg.telegram_user_id = message.from_user.id
+						tgclass.user = message.from_user.id
 						print("Bot linked to " + str(message.from_user.id) + " (" + message.from_user.first_name + ")")
 						tgclass.send_msg("Bot successfully linked. You can send me voice notes and I will Tweet them as a video or send me a link to a Tweet and then the voice note and I will tweet them as a reply to the specified Tweet.")
 						cfg.save_settings("config.cfg")
@@ -59,7 +60,6 @@ def main():
 						if match is not None:
 							url = message.text[match.start():match.end()]
 							foo, tweet_id = url.rsplit("/", 1)
-							print(tweet_id)
 							tweet_text, user = tw.set_reply(tweet_id)
 							if tweet_text is not None:
 								tgclass.send_msg("Now replying to: @" + user + ": " + tweet_text + "\nTo post the audio as a tweet instead of a reply, send \"/cancel\"")
