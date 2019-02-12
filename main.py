@@ -41,7 +41,7 @@ def main():
 						file.write(downloaded_voice)
 					converter.convert(filename,duration)
 					tw.tweet(filename + ".mp4")
-					tgclass.send_msg("Audio sent. If you were replying to a Tweet, send \"/cancel\" to exit reply mode.")
+					tgclass.send_msg("Audio sent. If you were replying to a Tweet, send \"/cancel\" to exit reply mode. Tweet text is now empty.")
 					os.remove(filename + ".ogg")
 					os.remove(filename + ".mp4")
 			
@@ -52,7 +52,7 @@ def main():
 						cfg.telegram_user_id = message.from_user.id
 						tgclass.user = message.from_user.id
 						print("Bot linked to " + str(message.from_user.id) + " (" + message.from_user.first_name + ")")
-						tgclass.send_msg("Bot successfully linked. You can send me voice notes and I will Tweet them as a video or send me a link to a Tweet and then the voice note and I will tweet them as a reply to the specified Tweet.")
+						tgclass.send_msg("Bot successfully linked. You can send me voice notes and I will Tweet them as a video or send me a link to a Tweet and then the voice note and I will tweet them as a reply to the specified Tweet.\nYou can also add text to the tweet using \"/text <your text here>\". To remove the text, just send that command with no text.")
 						cfg.save_settings("config.cfg")
 				else:
 					if message.from_user.id == cfg.telegram_user_id:
@@ -69,6 +69,18 @@ def main():
 							if message.text == "/cancel":
 								tw.set_reply(None)
 								tgclass.send_msg("Now posting as a Tweet.")
+							elif message.text.startswith("/text"):
+								if message.text == "/text" or message.text == "/text ":
+									text = ""
+								else:
+									text = message.text[6:]
+								if len(text) > 240:
+									text = text[:239]
+								tw.set_text(text)
+								if text == "":
+									tgclass.send_msg("Text cleared.")
+								else:
+									tgclass.send_msg("Text set to: " + text)
 			
 			tg.polling()
 			tg.stop_bot()

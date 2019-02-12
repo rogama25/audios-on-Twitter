@@ -10,6 +10,7 @@ class Twitter:
 		self.reply_id = None
 		if self.tw.VerifyCredentials() is None:
 			raise ValueError("Twitter credentials are wrong.")
+		self.text = ""
 	
 	def set_reply(self, reply_id: int):
 		if reply_id is not None:
@@ -23,9 +24,12 @@ class Twitter:
 			self.reply_id = None
 			return None, None
 	
+	def set_text(self, text:str):
+		self.text = text
+	
 	def tweet(self, media: str):
 		if self.reply_id is None:
 			autopop = False
 		else:
 			autopop = True
-		self.tw.PostUpdate(media=media, in_reply_to_status_id=self.reply_id, status="", auto_populate_reply_metadata=autopop)
+		self.tw.PostUpdate(media=media, in_reply_to_status_id=self.reply_id, status=self.text, auto_populate_reply_metadata=autopop)
