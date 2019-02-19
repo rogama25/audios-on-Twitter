@@ -33,3 +33,4 @@ class Twitter:
 		else:
 			autopop = True
 		self.tw.PostUpdate(media=media, in_reply_to_status_id=self.reply_id, status=self.text, auto_populate_reply_metadata=autopop)
+		self.set_text("")
