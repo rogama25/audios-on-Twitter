@@ -32,5 +32,25 @@ class Twitter:
 			autopop = False
 		else:
 			autopop = True
-		self.tw.PostUpdate(media=media, in_reply_to_status_id=self.reply_id, status=self.text, auto_populate_reply_metadata=autopop)
+		video_id = self.tw.UploadMediaChunked(media, media_category="tweet_video")
+		import time
+		while True:
+			data = self.media_status(video_id)
+			if data['processing_info']['state'] != 'pending' and data['processing_info']['state'] != 'in_progress':
+				break
+			time.sleep(1)
+		self.tw.PostUpdate(media=video_id, in_reply_to_status_id=self.reply_id, status=self.text, auto_populate_reply_metadata=autopop)
 		self.set_text("")
+		
+	def media_status(self,media_id: int):
+		url = '%s/media/upload.json' % self.tw.upload_url
+		
+		parameters = {
+			'command': 'STATUS',
+			'media_id': media_id
+		}
+		
+		resp = self.tw._RequestUrl(url, 'GET', data=parameters)
+		data = self.tw._ParseAndCheckTwitter(resp.content.decode('utf-8'))
+		
+		return data

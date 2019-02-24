@@ -39,6 +39,10 @@ def main():
 					duration = message.voice.duration
 					with open(filename+".ogg", "wb") as file:
 						file.write(downloaded_voice)
+					try:
+						os.remove(filename + ".mp4")
+					except:
+						pass
 					converter.convert(filename,duration)
 					tw.tweet(filename + ".mp4")
 					tgclass.send_msg("Audio sent. If you were replying to a Tweet, send \"/cancel\" to exit reply mode. Tweet text is now empty.")
