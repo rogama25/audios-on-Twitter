@@ -1,1 +1,20 @@
-To use this program, you need first to create a Telegram bot talking to http://t.me/botfather and create a dev account in http://developer.twitter.com and an app, with an access token for your account with read and write permissions.
+# Audios on Twitter
+## Requirements
+* Python 3.6.8 (other versions may or may not work). [Get it here for Windows or Mac](https://www.python.org/downloads/release/python-368/). On Linux, check instructions for your distribution.
+###### **NOTE:** For Windows, if you get the pre-compiled binary from the [releases page](https://github.com/rogama25/audios-on-Twitter/releases/latest) there's no need to have Python installed.
+
+* FFMPEG.
+**For Windows:** Place the bin/ffmpeg.exe that it's included in the zip that you can download from [here](https://ffmpeg.zeranoe.com/builds/) into the folder where you have the program. *I used the 20190128 build for Win32 (and it will be downloaded if it doesn't exist) but any newer build should work fine. I would recommend the 4.1.1 version.*
+**For Mac:** I don't really know how does that OS work. It should work with no problems if the program can run a ffmpeg executable (it should be if it's in the same folder as the program or in paths). *It should be work with the 20190128 version or any newer.*
+**For Linux:** Follow the instructions for your distribution.
+
+### IMPORTANT NOTE: The program should be in a folder with writing permissions. It will save the settings on the folder you place the programs into config.cfg and will download and convert media you send to it on the /media folder and it will delete after the Tweet is sent so it uses a very low space on disk. For Windows, it also downloads ffmpeg into the folder.
+
+## Installation.
+**For Windows:** [Get Python](https://www.python.org/downloads/release/python-368/) and download the source code from the [releases page](https://github.com/rogama25/audios-on-Twitter/releases/latest). Then run `pip install -r requirements.txt`. Finally run `py main.py` and follow the instructions on screen to configure it.
+Alternatively, get the pre-compiled .exe file on the [releases page](https://github.com/rogama25/audios-on-Twitter/releases/latest) and just run it.
+
+**For Mac or Linux:** Get the requirements that appear on the first section and run `pip install -r requirements.txt` then `py main.py`.
+
+## Changelog
+Check the changelog [here](changelog.md) or on the [releases page](https://github.com/rogama25/audios-on-Twitter/releases). It's planned to show the changelog from the program but it's not done yet.
