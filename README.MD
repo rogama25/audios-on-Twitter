@@ -4,9 +4,12 @@
 ###### **NOTE:** For Windows, if you get the pre-compiled binary from the [releases page](https://github.com/rogama25/audios-on-Twitter/releases/latest) there's no need to have Python installed.
 
 * FFMPEG.
-**For Windows:** Place the bin/ffmpeg.exe that it's included in the zip that you can download from [here](https://ffmpeg.zeranoe.com/builds/) into the folder where you have the program. *I used the 20190128 build for Win32 (and it will be downloaded if it doesn't exist) but any newer build should work fine. I would recommend the 4.1.1 version.*
-**For Mac:** I don't really know how does that OS work. It should work with no problems if the program can run a ffmpeg executable (it should be if it's in the same folder as the program or in paths). *It should be work with the 20190128 version or any newer.*
-**For Linux:** Follow the instructions for your distribution.
+
+	**For Windows:** Place the bin/ffmpeg.exe that it's included in the zip that you can download from [here](https://ffmpeg.zeranoe.com/builds/) into the folder where you have the program. *I used the 20190128 build for Win32 (and it will be downloaded if it doesn't exist) but any newer build should work fine. I would recommend the 4.1.1 version.*
+
+	**For Mac:** I don't really know how does that OS work. It should work with no problems if the program can run a ffmpeg executable (it should be if it's in the same folder as the program or in paths). *It should be work with the 20190128 version or any newer.*
+
+	**For Linux:** Follow the instructions for your distribution.
 
 ### IMPORTANT NOTE: The program should be in a folder with writing permissions. It will save the settings on the folder you place the programs into config.cfg and will download and convert media you send to it on the /media folder and it will delete after the Tweet is sent so it uses a very low space on disk. For Windows, it also downloads ffmpeg into the folder.
 
@@ -21,11 +24,17 @@ Check the changelog [here](changelog.md) or on the [releases page](https://githu
 
 ## Usage
 The first time you run it, you will be asked to configure it with the following screen: ![](docs/settings.png) There you should add the API keys for Twitter and Telegram.
+
 **1:** Telegram API key for the bot that you have to send the audios to. Get that key by talking to [BotFather](https://t.me/botfather) and creating a new bot.
+
 **2:** This should unlink the program to the Telegram user that is linked to (explanation below)
+
 **3:** Twitter consumer keys (those are related to your application)
+
 **4:** Twitter access tokens (those are related to you account). Get both 3 and 4 [here](https://developer.twitter.com/en.html) and then create a new application with read and write permissions for your account.
+
 **5:** Start the bot, or restart it after you have edited some settings
+
 **6:** Exit the program.
 
 After you have set it up and you start it, the program shows you a 6-digit code that you should send it through Telegram. After you send it, your Telegram account should be linked with the bot and other user accounts shouldn't be able to interact with the bot. Then you just have to send an audio and it will convert to a video and tweet it on your account :D
