@@ -22,6 +22,13 @@ class Settings:
 			self.edit_settings()
 	
 	def load_file(self, file: str):
+		"""Loads a config file
+		
+		:param file: config file URI
+		:type file: str
+		:return: None
+		:raises ValueError: This exception get raised if settings file is corrupt. More information about the error is described on the first attribute
+		"""
 		if os.path.isfile(file):
 			with open(file, "r+") as f:
 				not_numeric = False
@@ -47,6 +54,10 @@ class Settings:
 			self.edit_settings()
 	
 	def edit_settings(self):
+		"""Shows a command-line editor for the settings
+		
+		:return: None
+		"""
 		while True:
 			cls()
 			print("""Settings editor. Press the following numbers to edit settings.
@@ -96,12 +107,27 @@ class Settings:
 				sys.exit()
 	
 	def save_settings(self, file: str):
+		"""Saves settings to disk
+		
+		:param file: URI of the config file
+		:type file: str
+		:return: None
+		"""
 		with open(file, "w+") as f:
 			for attr, value in self.__dict__.items():
 				if value is not None:
 					f.write(attr + "=" + str(value) + "\n")
 	
 	def attributes_complete(self, return_values: bool = False):
+		"""Checks if all the required attributes are set up successfully.
+		
+		:param return_values: Returns the missing needed values as an array on the second return object. Defaults to false
+		:type return_values: bool
+		:return: If return_values is false:
+			Returns true if all required attributes are set up. Returns false if not.
+			If return_values is true:
+			Returns true, array_of_missing_elements_as_strings if everything is ok. Returns false, [] if not.
+		"""
 		missing = []
 		for attr, value in self.__dict__.items():
 			if value is None:

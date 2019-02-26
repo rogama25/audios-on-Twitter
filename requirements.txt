@@ -1,4 +1,3 @@
 ffmpy
-Pillow
 pyTelegramBotAPI
 python_twitter
