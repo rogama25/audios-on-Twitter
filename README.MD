@@ -42,10 +42,13 @@ There you should add the API keys for Twitter and Telegram.
 After you have set it up and you start it, the program shows you a 6-digit code that you should send it through Telegram. After you send it, your Telegram account should be linked with the bot and other user accounts shouldn't be able to interact with the bot. Then you just have to send an audio and it will convert to a video and tweet it on your account :D
 
 #### Commands:
-* `/text <your text here>`: This adds the text you send to the next Tweet the bot sends. Keep in mind that Twitter doesn't allow more than 240 characters and will be truncated at that length. It will remove the text if no text is sent. *It's planned to truncate at the last space of the text before 240 or if no spaces are found, it will truncate at 240, but still not done.*
+* `/text <your text here>`: This adds the text you send to the next Tweet the bot sends. Keep in mind that Twitter doesn't allow more than 240 characters and will be truncated at that length. It will remove the text if no text is sent. *Planned to add link workarounds to limit text at the maximum possible (that should be 280 instead of 240 chars.)*
 * `/cancel`: This will cancel replying to a Tweet.
 * Send a link to a Tweet and the next audios you send will be sent in reply to this.
 * Send an audio and will be tweeted, with some options or another depending on the previous commands. Please keep in mind that the program doesn't remember things after a restart.
 
 ## Contributing
 Feel free to submit issues or pull requests :D
+
+#### People that contributed to this project (Thanks!):
+* [IceWildcat](https://github.com/IceWildcat): Text now ends at the last space before 240 characters.
