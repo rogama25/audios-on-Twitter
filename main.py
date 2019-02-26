@@ -81,7 +81,7 @@ def main():
 								
 								while(len(text) > 240):
 									spacestext = " ".join(text.split(" ")[:-1])
-									if spacestext = "":
+									if spacestext == "":
 										# if it has returned an empty string it means the word has no more spaces (safety check)
 										# slice at max and go
 										text = text[:239]
