@@ -78,8 +78,17 @@ def main():
 									text = ""
 								else:
 									text = message.text[6:]
-								if len(text) > 240:
-									text = text[:239]
+								
+								while(len(text) > 240):
+									spacestext = " ".join(text.split(" ")[:-1])
+									if spacestext = "":
+										# if it has returned an empty string it means the word has no more spaces (safety check)
+										# slice at max and go
+										text = text[:239]
+									else:
+										text = spacestext
+										#check again
+								
 								tw.set_text(text)
 								if text == "":
 									tgclass.send_msg("Text cleared.")
