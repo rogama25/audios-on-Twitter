@@ -23,7 +23,9 @@ Alternatively, get the pre-compiled .exe file on the [releases page](https://git
 Check the changelog [here](changelog.md) or on the [releases page](https://github.com/rogama25/audios-on-Twitter/releases). It's planned to show the changelog from the program but it's not done yet.
 
 ## Usage
-The first time you run it, you will be asked to configure it with the following screen: ![](docs/settings.png) There you should add the API keys for Twitter and Telegram.
+The first time you run it, you will be asked to configure it with the following screen: ![](docs/settings.png)
+
+There you should add the API keys for Twitter and Telegram.
 
 **1:** Telegram API key for the bot that you have to send the audios to. Get that key by talking to [BotFather](https://t.me/botfather) and creating a new bot.
 

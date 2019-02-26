@@ -105,5 +105,6 @@ venv.bak/
 
 .idea
 *.cfg
-media
+media/*
+!media/img.png
 ffmpeg.exe
