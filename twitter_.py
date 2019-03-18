@@ -21,8 +21,10 @@ class Twitter:
 		self.tw = twitter.Api(cfg.consumer_key, cfg.consumer_secret, cfg.access_token, cfg.access_secret,
 							  tweet_mode='extended')
 		self.reply_id = None
-		if self.tw.VerifyCredentials() is None:
+		cuentabot = self.tw.VerifyCredentials()
+		if cuentabot is None:
 			raise ValueError("Twitter credentials are wrong.")
+		print("Connected to Twitter: " + cuentabot.screen_name)
 		self.text = ""
 	
 	def set_reply(self, reply_id: int):

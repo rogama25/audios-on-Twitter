@@ -25,9 +25,10 @@ class TGBot:
 		self.user = cfg.telegram_user_id
 		self.bot = telebot.TeleBot(self.key)
 		try:
-			self.bot.get_me()
+			cuentabot = self.bot.get_me()
 		except ApiException:
 			raise ValueError("Invalid Telegram API key.")
+		print("Connected to Telegram: " + cuentabot.username)
 	
 	def send_msg(self, text:str):
 		"""Sends a Telegram message to the linked user
