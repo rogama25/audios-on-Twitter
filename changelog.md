@@ -1,6 +1,9 @@
 # Audios on Twitter
 #### Latest version should be the topmost one and it's the one I recommend using if marked as stable. I do not recommend using a dev version.
 
+## v1.4.1 (stable)
+* Program prints Twitter and Telegram info on startup, and when downloading speaker background.
+
 ## v1.4 (stable)
 * Background is now a speaker symbol instead of a black background.
 * Tweet text is now cut at the last space before 240 characters.
