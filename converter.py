@@ -13,6 +13,7 @@ def convert(input_file: str, duration: float):
 	"""
 	if not os.path.exists("media/img.png"):
 		import urllib.request
+		print("Background not found on disk. Downloading it, please wait...")
 		urllib.request.urlretrieve("https://raw.githubusercontent.com/rogama25/audios-on-Twitter/master/media/img.png", "media/img.png")
 	ff = ffmpy.FFmpeg(
 		inputs={'media/img.png': None, input_file + '.ogg': None},
