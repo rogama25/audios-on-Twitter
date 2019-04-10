@@ -108,6 +108,13 @@ def main():
 									tgclass.send_msg("Text cleared.")
 								else:
 									tgclass.send_msg("Text set to: " + text)
+							elif message.text.startswith("/dm"):
+								if message.text == "/dm" or message.text == "/dm ":
+									user = None
+								else:
+									user = message.text[4:]
+									user = user.replace("@", "")
+								tw.set_dm_user(user)
 			
 			tg.polling()
 			tg.stop_bot()
