@@ -5,7 +5,7 @@
 
 * FFMPEG.
 
-	**For Windows:** Place the bin/ffmpeg.exe that it's included in the zip that you can download from [here](https://ffmpeg.zeranoe.com/builds/) into the folder where you have the program. *I used the 20190128 build for Win32 (and it will be downloaded if it doesn't exist) but any newer build should work fine. I would recommend the 4.1.1 version.*
+	**For Windows:** Place the bin/ffmpeg.exe that it's included in the zip that you can download from [here](https://ffmpeg.zeranoe.com/builds/) into the folder where you have the program. *If none is found in the folder, version 4.1.1 will be downloaded. Any newer version should work.*
 
 	**For Mac:** I don't really know how does that OS work. It should work with no problems if the program can run a ffmpeg executable (it should be if it's in the same folder as the program or in paths). *It should be work with the 20190128 version or any newer.*
 
