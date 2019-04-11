@@ -192,3 +192,4 @@ class Twitter:
 		except:
 			self.dm_user = None
 		self.dm_user = user
+		return self.dm_user

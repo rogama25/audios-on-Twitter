@@ -39,7 +39,7 @@ def main():
 				:return:
 				"""
 				if message.from_user.id == cfg.telegram_user_id:
-					tgclass.send_msg("We received the voice note. Please wait a few seconds while we sent it to Twitter. Please don't send me anything else till you receive a reply from me.")
+					tgclass.send_msg("We received the voice note. Please wait a few seconds while we send it to Twitter. Please don't send me anything else until you receive a reply from me.")
 					voice_info = tg.get_file(message.voice.file_id)
 					downloaded_voice = tg.download_file(voice_info.file_path)
 					if not os.path.exists("media"):
@@ -53,8 +53,11 @@ def main():
 					except:
 						pass
 					converter.convert(filename,duration)
-					tw.tweet(filename + ".mp4")
-					tgclass.send_msg("Audio sent. If you were replying to a Tweet, send \"/cancel\" to exit reply mode. Tweet text is now empty.")
+					try:
+						tw.tweet(filename + ".mp4")
+						tgclass.send_msg("Audio sent. If you were replying to a Tweet, send \"/cancel\" to exit reply mode. Tweet text is now empty.")
+					except KeyError as e:
+						tgclass.send_msg("Audio could not be sent.")
 					os.remove(filename + ".ogg")
 					os.remove(filename + ".mp4")
 			
@@ -70,7 +73,7 @@ def main():
 						cfg.telegram_user_id = message.from_user.id
 						tgclass.user = message.from_user.id
 						print("Bot linked to " + str(message.from_user.id) + " (" + message.from_user.first_name + ")")
-						tgclass.send_msg("Bot successfully linked. You can send me voice notes and I will Tweet them as a video or send me a link to a Tweet and then the voice note and I will tweet them as a reply to the specified Tweet.\nYou can also add text to the tweet using \"/text <your text here>\". To remove the text, just send that command with no text.")
+						tgclass.send_msg("Bot successfully linked. You can send me voice notes and I will Tweet them as a video or send me a link to a Tweet and then the voice note and I will tweet them as a reply to the specified Tweet.\nYou can also add text to the tweet using \"/text <your text here>\". To remove the text, just send that command with no text.\nSend Direct messages with /dm <user>. @ is not needed.")
 						cfg.save_settings("config.cfg")
 				else:
 					if message.from_user.id == cfg.telegram_user_id:
@@ -114,7 +117,11 @@ def main():
 								else:
 									user = message.text[4:]
 									user = user.replace("@", "")
-								tw.set_dm_user(user)
+								user = tw.set_dm_user(user)
+								if user is None:
+									tgclass.send_msg("DM cancelled.")
+								else:
+									tgclass.send_msg("Sending DM to @" + user + ". Send /dm with no user to exit DM mode.")
 			
 			tg.polling()
 			tg.stop_bot()
