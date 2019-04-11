@@ -15,6 +15,8 @@ def convert(input_file: str, duration: float):
 		import urllib.request
 		print("Background not found on disk. Downloading it, please wait...")
 		urllib.request.urlretrieve("https://raw.githubusercontent.com/rogama25/audios-on-Twitter/master/media/img.png", "media/img.png")
+	if duration > 140:
+		duration = 140
 	ff = ffmpy.FFmpeg(
 		inputs={'media/img.png': None, input_file + '.ogg': None},
 		outputs={input_file + '.mp4': '-c:v libx264 -c:a aac -tune stillimage -pix_fmt yuv420p -t ' + str(duration)},
