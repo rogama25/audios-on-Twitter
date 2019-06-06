@@ -1,6 +1,9 @@
 # Audios on Twitter
 #### Latest version should be the topmost one and it's the one I recommend using if marked as stable. I do not recommend using a dev version.
 
+## v1.5 (stable)
+* You can now send audios through Direct Messages
+
 ## v1.4.1 (stable)
 * Program prints Twitter and Telegram info on startup, and when downloading speaker background.
 
