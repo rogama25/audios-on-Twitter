@@ -25,6 +25,7 @@ class Twitter:
 		cuentabot = self.tw.VerifyCredentials()
 		if cuentabot is None:
 			raise ValueError("Twitter credentials are wrong.")
+		self.cuenta = cuentabot.screen_name
 		print("Connected to Twitter: " + cuentabot.screen_name)
 		self.text = ""
 		self.dm_user = None
@@ -79,7 +80,11 @@ class Twitter:
 							   auto_populate_reply_metadata=autopop)
 			self.set_text("")
 		else:
-			self.send_dm(self.text, screen_name=self.dm_user, media_file_path=media, media_type="dm_video")
+			fr = self.tw.ShowFriendship(source_screen_name=self.cuenta, target_screen_name=self.dm_user)
+			if fr["relationship"]["source"]["can_dm"] == True:
+				self.send_dm(self.text, screen_name=self.dm_user, media_file_path=media, media_type="dm_video")
+			else:
+				raise KeyError()
 	
 	def media_status(self, media_id: int):
 		"""Checks the status of the uploaded media before tweeting

@@ -57,7 +57,7 @@ def main():
 						tw.tweet(filename + ".mp4")
 						tgclass.send_msg("Audio sent. If you were replying to a Tweet, send \"/cancel\" to exit reply mode. Tweet text is now empty.")
 					except KeyError as e:
-						tgclass.send_msg("Audio could not be sent.")
+						tgclass.send_msg("Audio could not be sent. Please check that you can send DM to that user.")
 					os.remove(filename + ".ogg")
 					os.remove(filename + ".mp4")
 			
