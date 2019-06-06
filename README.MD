@@ -33,7 +33,7 @@ There you should add the API keys for Twitter and Telegram.
 
 **3:** Twitter consumer keys (those are related to your application)
 
-**4:** Twitter access tokens (those are related to you account). Get both 3 and 4 [here](https://developer.twitter.com/en.html) and then create a new application with read and write permissions for your account.
+**4:** Twitter access tokens (those are related to you account). Get both 3 and 4 [here](https://developer.twitter.com/en.html) and then create a new application with read, write and direct messaging permissions for your account.
 
 **5:** Start the bot, or restart it after you have edited some settings
 
