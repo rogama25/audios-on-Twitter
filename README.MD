@@ -45,6 +45,7 @@ After you have set it up and you start it, the program shows you a 6-digit code 
 * `/text <your text here>`: This adds the text you send to the next Tweet the bot sends. Keep in mind that Twitter doesn't allow more than 240 characters and will be truncated at that length. It will remove the text if no text is sent. *Planned to add link workarounds to limit text at the maximum possible (that should be 280 instead of 240 chars.)*
 * `/cancel`: This will cancel replying to a Tweet.
 * Send a link to a Tweet and the next audios you send will be sent in reply to this.
+* `/dm <user>`: This sends Direct Messages to a user on Twitter. Use this command with no user to exit DM mode.
 * Send an audio and will be tweeted, with some options or another depending on the previous commands. Please keep in mind that the program doesn't remember things after a restart.
 
 ## Contributing
