@@ -21,7 +21,8 @@ def main():
 	cfg = settings.Settings()
 	while True:
 		try:
-			tg = telegram.TGBot(cfg).bot
+			tgclass = telegram.TGBot(cfg)
+			tg = tgclass.bot
 			print("Bot successfully started. Do CTRL-C to stop.")
 			if cfg.telegram_user_id is None:
 				link_key = ""
