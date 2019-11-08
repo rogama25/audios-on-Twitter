@@ -1,3 +1,5 @@
 ffmpy
 pyTelegramBotAPI
 python_twitter
+progress
+requests
