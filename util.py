@@ -26,6 +26,7 @@ def download_ffmpeg():
 	if not os.path.exists("ffmpeg.exe"):  # Check if ffmpeg was already downloaded and extracted
 		import zipfile
 		import urllib.request
+		import shutil
 		version = urllib.request.urlopen("https://raw.githubusercontent.com/rogama25/audiosToTwitter/master/latest-ffmpeg.txt").read() # Get the last ffmpeg version from my repo
 		version = version.decode("UTF-8")
 		zip_valid = False
@@ -38,7 +39,6 @@ def download_ffmpeg():
 		if not zip_valid:
 			import requests
 			import progress.bar
-			import shutil
 			import sys
 			char = input("Do you want to download ffmpeg now? This will download around 60MiB of data. [y/n] ")
 			while True:
