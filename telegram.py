@@ -97,7 +97,7 @@ class TGBot:
 				self.cfg.save_settings("config.cfg")
 		else:
 			if message.from_user.id == self.user:
-				match = re.search("https://twitter.com/[a-z|A-Z|0-9|_]+/status/[0-9]+", message.text)
+				match = re.search("https://twitter.com/[a-zA-Z0-9_]+/status/[0-9]+", message.text)
 				if match is not None:
 					url = message.text[match.start():match.end()]
 					foo, tweet_id = url.rsplit("/", 1)
