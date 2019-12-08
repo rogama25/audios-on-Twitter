@@ -48,6 +48,7 @@ After you have set it up and you start it, the program shows you a 6-digit code 
 * `/dm <user>`: This sends Direct Messages to a user on Twitter. Use this command with no user to exit DM mode.
 * Send an audio and will be tweeted, with some options or another depending on the previous commands. Please keep in mind that the program doesn't remember things after a restart.
 * `/help`: Shows the command list in the chat.
+* `/about`: Shows the about page.
 
 ## Contributing
 Feel free to submit issues or pull requests :D

@@ -64,3 +64,6 @@ def download_ffmpeg():
 		shutil.rmtree("ffmpeg-"+version+"-win32-static")
 		zip.close()
 		os.remove("ffmpeg.zip")
+
+def get_version():
+	return "1.6"

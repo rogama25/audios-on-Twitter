@@ -5,6 +5,7 @@ import os
 import converter
 import twitter_
 import re
+from util import get_version
 
 
 class TGBot:
@@ -149,16 +150,29 @@ class TGBot:
 · Send a link to a Tweet and I'll reply to that one.
 · /cancel - Exits reply mode and posts next audios as a normal Tweet.
 · Send an audio or a music file and I will post that audio with the previous configurations. If the file is longer than 2:20 mins, it will be cut at that time.
-· /help - Shows this help.""")
+· /help - Shows this help.
+· /about - Shows the about page.""")
+					elif message.text == "/about":
+						self.send_msg("""*About:*
+*AudiosToTwitter v""" + get_version() + """*
+
+Created by: [rogama25](https://twitter.com/rogama25)
+
+[Check the project's official site.](https://github.com/rogama25/AudiosToTwitter)
+With help from [IceWildcat](https://github.com/IceWildcat)
+
+Report any bugs at [my GitHub repo](https://github.com/rogama25/audiosToTwitter/issues/new)
+
+*With ❤️ from Spain*""", parse_mode="Markdown", disableweb=True)
 	
-	def send_msg(self, text: str):
+	def send_msg(self, text: str, parse_mode=None, disableweb=False):
 		"""Sends a Telegram message to the linked user
 		
 		:param text: Text message
 		:type text: str
 		:return: None
 		"""
-		self.bot.send_message(self.user, text)
+		self.bot.send_message(self.user, text, parse_mode=parse_mode, disable_web_page_preview=disableweb)
 
 	def set_auth_code(self, code):
 		self.link_key = code
