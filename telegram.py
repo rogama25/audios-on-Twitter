@@ -142,6 +142,14 @@ class TGBot:
 							self.send_msg("DM cancelled.")
 						else:
 							self.send_msg("Sending DM to @" + user + ". Send /dm with no user to exit DM mode.")
+					elif message.text == "/help":
+						self.send_msg("""Available commands:
+· /text <text> - Sets the text for your next Tweet or DM.
+· /dm <user> - Sends audios to a user through DM instead of posting Tweets. Sending no user or a nonexisting one will exit DM mode.
+· Send a link to a Tweet and I'll reply to that one.
+· /cancel - Exits reply mode and posts next audios as a normal Tweet.
+· Send an audio or a music file and I will post that audio with the previous configurations. If the file is longer than 2:20 mins, it will be cut at that time.
+· /help - Shows this help.""")
 	
 	def send_msg(self, text: str):
 		"""Sends a Telegram message to the linked user
