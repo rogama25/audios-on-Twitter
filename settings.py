@@ -13,7 +13,8 @@ class Settings:
         self.access_token = None
         self.access_secret = None
         if not os.path.exists(get_config_dir() + "config.cfg") and os.path.isfile("config.cfg"):
-            os.makedirs(get_config_dir())
+            if not os.path.isdir(get_config_dir()):
+                os.makedirs(get_config_dir())
             os.rename("config.cfg", get_config_dir() + "config.cfg")
         try:
             self.load_file(get_config_dir() + "config.cfg")
