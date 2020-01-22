@@ -157,9 +157,9 @@ class TGBot:
 *AudiosToTwitter v""" + get_version() + """*
 
 Created by: [rogama25](https://twitter.com/rogama25)
+With help from [IceWildcat](https://github.com/IceWildcat)
 
 [Check the project's official site.](https://github.com/rogama25/AudiosToTwitter)
-With help from [IceWildcat](https://github.com/IceWildcat)
 
 Report any bugs at [my GitHub repo](https://github.com/rogama25/audiosToTwitter/issues/new)
 
