@@ -1,4 +1,4 @@
-from util import cls, press_enter
+from util import cls, press_enter, get_config_dir
 import sys
 import os
 
@@ -12,8 +12,11 @@ class Settings:
         self.consumer_secret = None
         self.access_token = None
         self.access_secret = None
+        if not os.path.exists(get_config_dir() + "config.cfg") and os.path.isfile("config.cfg"):
+            os.makedirs(get_config_dir())
+            os.rename("config.cfg", get_config_dir() + "config.cfg")
         try:
-            self.load_file("config.cfg")
+            self.load_file(get_config_dir() + "config.cfg")
         except ValueError as e:
             print("An error occurred while loading settings file.")
             if len(e.args) > 0:
@@ -93,7 +96,7 @@ class Settings:
             if option == '5':
                 is_complete, missing = self.attributes_complete(True)
                 if is_complete:
-                    self.save_settings("config.cfg")
+                    self.save_settings(get_config_dir() + "config.cfg")
                     return
                 else:
                     for attr in missing:
@@ -103,7 +106,7 @@ class Settings:
                     input("Press enter to return to menu.")
             if option == '6':
                 if self.attributes_complete():
-                    self.save_settings("config.cfg")
+                    self.save_settings(get_config_dir() + "config.cfg")
                 sys.exit()
 
     def save_settings(self, file: str):
