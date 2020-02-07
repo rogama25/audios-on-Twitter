@@ -110,7 +110,7 @@ def download_ffmpeg():
 
 
 def get_version():
-    return "1.6"
+    return "1.7"
 
 
 def get_config_dir():
