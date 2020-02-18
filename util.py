@@ -118,11 +118,11 @@ def get_config_dir():
     if platform.system() == "Windows":
         return os.getenv("APPDATA") + "\\rogama\\audiosToTwitter\\"
     elif platform.system() == "Darwin":
-        return "~/Library/Preferences/rogama/audiosToTwitter"
+        return "~/Library/Preferences/rogama/audiosToTwitter/"
     elif platform.system() == "Linux":
         if not os.getenv("XDG_CONFIG_HOME"):
-            return os.getenv("HOME") + "/.config/rogama/audiosToTwitter"
-        return os.getenv("XDG_CONFIG_HOME") + "/rogama/audiosToTwitter"
+            return os.getenv("HOME") + "/.config/rogama/audiosToTwitter/"
+        return os.getenv("XDG_CONFIG_HOME") + "/rogama/audiosToTwitter/"
 
 def get_lang_dir():
     return "./lang"
