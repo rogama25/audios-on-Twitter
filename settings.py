@@ -13,6 +13,7 @@ class Settings:
         self.consumer_secret = None
         self.access_token = None
         self.access_secret = None
+        self.lang = "en"
         if not os.path.exists(get_config_dir() + "config.cfg") and os.path.isfile("config.cfg"):
             if not os.path.isdir(get_config_dir()):
                 os.makedirs(get_config_dir())
@@ -58,10 +59,21 @@ class Settings:
         else:
             print("Select a language:")
             langs = languages.get_available()
-            for n, langname in enumerate(langs.values()):
+            langcodes = []
+            for n, (langcode, langname) in enumerate(langs.items()):
                 print("[" + str(n+1) + "]" + " " + langname)
+                langcodes.append(langcode)
             while True:
-                num = input("[1-" + str(n+1) + "?] ")
+                string = input("[1-" + str(n+1) + "?] ")
+                try:
+                    num = int(string)
+                    if num >= 1 and num <= len(langs):
+                        self.lang = langcodes[num-1]
+                        break
+                    else:
+                        raise ValueError
+                except ValueError:
+                    print("Value is not valid.")
             self.edit_settings()
 
     def edit_settings(self):
