@@ -1,6 +1,7 @@
 from util import cls, press_enter, get_config_dir
 import sys
 import os
+import languages
 
 
 class Settings:
@@ -55,6 +56,12 @@ class Settings:
             if not self.attributes_complete():
                 raise ValueError("Missing settings.")
         else:
+            print("Select a language:")
+            langs = languages.get_available()
+            for n, langname in enumerate(langs.values()):
+                print("[" + str(n+1) + "]" + " " + langname)
+            while True:
+                num = input("[1-" + str(n+1) + "?] ")
             self.edit_settings()
 
     def edit_settings(self):

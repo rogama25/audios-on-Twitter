@@ -123,3 +123,6 @@ def get_config_dir():
         if not os.getenv("XDG_CONFIG_HOME"):
             return os.getenv("HOME") + "/.config/rogama/audiosToTwitter"
         return os.getenv("XDG_CONFIG_HOME") + "/rogama/audiosToTwitter"
+
+def get_lang_dir():
+    return "./lang"
