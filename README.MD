@@ -1,6 +1,6 @@
 # Audios on Twitter
 ## Requirements
-* Python 3.6.8 (other versions may or may not work). [Get it here for Windows or Mac](https://www.python.org/downloads/release/python-368/). On Linux, check instructions for your distribution.
+* Python 3.7.5 (other versions may or may not work). [Get it here for Windows or Mac](https://www.python.org/downloads/release/python-368/). On Linux, check instructions for your distribution.
 ###### **NOTE:** For Windows, if you get the pre-compiled binary from the [releases page](https://github.com/rogama25/audios-on-Twitter/releases/latest) there's no need to have Python installed.
 
 * FFMPEG.
@@ -47,11 +47,12 @@ After you have set it up and you start it, the program shows you a 6-digit code 
 * Send a link to a Tweet and the next audios you send will be sent in reply to this.
 * `/dm <user>`: This sends Direct Messages to a user on Twitter. Use this command with no user to exit DM mode.
 * Send an audio and will be tweeted, with some options or another depending on the previous commands. Please keep in mind that the program doesn't remember things after a restart.
-* `/help`: Shows the command list in the chat.
-* `/about`: Shows the about page.
 
 ## Contributing
 Feel free to submit issues or pull requests :D
+
+## Translating
+You can help translating to other languages. To start a new translation, fork the project, copy es.json or en.json inside the lang folder, translate it and submit a pull request. It's just a JSON file that you can edit with just a text editor or you can use [this little tool](https://github.com/rogama25/minecraft-translation-helper).
 
 #### People that contributed to this project (Thanks!):
 * [IceWildcat](https://github.com/IceWildcat): Text now ends at the last space before 240 characters.
