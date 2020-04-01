@@ -1,5 +1,4 @@
 import os
-from util import get_lang_dir
 import json
 
 selected = "en"
@@ -7,6 +6,7 @@ loaded_langs = {}
 
 
 def get_available():
+    from util import get_lang_dir
     langs = {}
     for filename in os.listdir(get_lang_dir()):
         file = os.path.join(get_lang_dir(), filename)
@@ -50,6 +50,7 @@ def get_string(string, lang=None):
 class Language:
 
     def __init__(self, name):
+        from util import get_lang_dir
         if name in get_loaded():
             raise NameError("Language already loaded.")
         if name not in get_available():
