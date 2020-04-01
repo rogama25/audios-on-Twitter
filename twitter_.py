@@ -2,6 +2,8 @@ import twitter
 import settings
 import time
 
+from languages import get_string
+
 
 class Twitter:
     """This is the Twitter API class
@@ -24,9 +26,9 @@ class Twitter:
         self.reply_id = None
         cuentabot = self.tw.VerifyCredentials()
         if cuentabot is None:
-            raise ValueError("Twitter credentials are wrong.")
+            raise ValueError(get_string("twitter_invalid_key"))
         self.cuenta = cuentabot.screen_name
-        print("Connected to Twitter: " + cuentabot.screen_name)
+        print(get_string("twitter_connected").format(cuentabot.screen_name))
         self.text = ""
         self.dm_user = None
 

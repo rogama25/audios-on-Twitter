@@ -1,5 +1,6 @@
 import os
 import ffmpy
+from languages import get_string
 
 
 def convert(input_file: str, duration: float):
@@ -13,7 +14,7 @@ def convert(input_file: str, duration: float):
     """
     if not os.path.exists("media/img.png"):
         import urllib.request
-        print("Background not found on disk. Downloading it, please wait...")
+        print(get_string("downloading_background"))
         urllib.request.urlretrieve("https://raw.githubusercontent.com/rogama25/audios-on-Twitter/master/media/img.png", "media/img.png")
     if duration > 140:
         duration = 140

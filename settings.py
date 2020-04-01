@@ -2,6 +2,7 @@ from util import cls, press_enter, get_config_dir
 import sys
 import os
 import languages
+from languages import get_string
 
 
 class Settings:
@@ -45,35 +46,21 @@ class Settings:
                     if key in list(self.__dict__.keys()):
                         if key != "telegram_user_id":
                             self.__dict__[key] = value
+                            if key == "lang":
+                                languages.selected = value
                         else:
                             if value.isdigit():
                                 self.telegram_user_id = int(value)
                             else:
                                 not_numeric = True
                     else:
-                        raise ValueError("Settings file appears to be corrupt.")
+                        raise ValueError(get_string("settings_corrupt"))
                 if not_numeric:
-                    raise ValueError("Telegram ID was not a numeric and was not saved..")
+                    raise ValueError(get_string("telegram_notnumeric"))
             if not self.attributes_complete():
-                raise ValueError("Missing settings.")
+                raise ValueError(get_string("missing_settings"))
         else:
-            print("Select a language:")
-            langs = languages.get_available()
-            langcodes = []
-            for n, (langcode, langname) in enumerate(langs.items()):
-                print("[" + str(n+1) + "]" + " " + langname)
-                langcodes.append(langcode)
-            while True:
-                string = input("[1-" + str(n+1) + "?] ")
-                try:
-                    num = int(string)
-                    if num >= 1 and num <= len(langs):
-                        self.lang = langcodes[num-1]
-                        break
-                    else:
-                        raise ValueError
-                except ValueError:
-                    print("Value is not valid.")
+            self.language_selector()
             self.edit_settings()
 
     def edit_settings(self):
@@ -83,34 +70,33 @@ class Settings:
         """
         while True:
             cls()
-            print("""Settings editor. Press the following numbers to edit settings.
-[1] Edit Telegram bot API key.
-[2] Unlink Telegram bot from current user.
-[3] Edit Twitter consumer keys.
-[4] Edit Twitter access tokens.
-[5] Restart bot.
-[6] Exit.""")
+            print(get_string("settings_info"))
+            print(get_string("edit_tg_key").format(1))
+            print(get_string("unlink_tg").format(2))
+            print(get_string("edit_tw_consumer").format(3))
+            print(get_string("edit_tw_access").format(4))
+            print(get_string("start_bot").format(5))
+            print(get_string("exit").format(6))
             option = input()
             if option == '1':
-                inp = input("Paste the new bot key (press enter to return without changing): ")
+                inp = input(get_string("input_tg_key"))
                 if inp != '':
                     self.telegram_key = inp
             if option == '2':
-                if input(
-                        "Are you sure you want to unlink from the current Telegram user? Press y to unlink:").lower() == 'y':
+                if input(get_string("unlink_tg_confirm")).lower() == 'y':
                     self.telegram_user_id = None
             if option == '3':
-                inp = input("Paste the new Twitter consumer key (press enter to ask for secret key without changing): ")
+                inp = input(get_string("input_tw_consumer"))
                 if inp != '':
                     self.consumer_key = inp
-                inp = input("Paste the new Twitter consumer secret (press enter to return without changing): ")
+                inp = input(get_string("input_tw_consumer_secret"))
                 if inp != '':
                     self.consumer_secret = inp
             if option == '4':
-                inp = input("Paste the new Twitter access token (press enter to ask for secret key without changing): ")
+                inp = input(get_string("input_tw_access"))
                 if inp != '':
                     self.access_token = inp
-                inp = input("Paste the new Twitter access secret (press enter to return without changing): ")
+                inp = input(get_string("input_tw_access_secret"))
                 if inp != '':
                     self.access_secret = inp
             if option == '5':
@@ -122,12 +108,14 @@ class Settings:
                     for attr in missing:
                         attr = attr.replace('_', ' ')
                         attr = attr.capitalize()
-                        print(attr + " is missing. Please set it before trying to start the bot.")
-                    input("Press enter to return to menu.")
+                        print(get_string("attribute_missing").format(attr))
+                    input(get_string("return_menu"))
             if option == '6':
                 if self.attributes_complete():
                     self.save_settings(get_config_dir() + "config.cfg")
                 sys.exit()
+            if option == '7':
+                self.language_selector()
 
     def save_settings(self, file: str):
         """Saves settings to disk
@@ -166,3 +154,23 @@ class Settings:
                 return False, missing
             else:
                 return False
+
+    def language_selector(self):
+        print("Select a language:")
+        langs = languages.get_available()
+        langcodes = []
+        for n, (langcode, langname) in enumerate(langs.items()):
+            print("[" + str(n + 1) + "]" + " " + langname)
+            langcodes.append(langcode)
+        while True:
+            string = input("[1-" + str(n + 1) + "?] ")
+            try:
+                num = int(string)
+                if 1 <= num <= len(langs):
+                    self.lang = langcodes[num - 1]
+                    languages.selected = langcodes[num - 1]
+                    break
+                else:
+                    raise ValueError
+            except ValueError:
+                print("Value is not valid.")

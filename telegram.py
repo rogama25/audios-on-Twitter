@@ -6,6 +6,7 @@ import converter
 import twitter_
 import re
 from util import get_version
+from languages import get_string
 
 
 class TGBot:
@@ -35,8 +36,8 @@ class TGBot:
         try:
             cuentabot = self.bot.get_me()
         except ApiException:
-            raise ValueError("Invalid Telegram API key.")
-        print("Connected to Telegram: " + cuentabot.username)
+            raise ValueError(get_string("telegram_invalid_key"))
+        print(get_string("telegram_connected").format(cuentabot.username))
 
         @self.bot.message_handler(content_types=['voice', 'audio'])
         def launch_voice(msg):
@@ -53,8 +54,7 @@ class TGBot:
         :return:
         """
         if message.from_user.id == self.user:
-            self.send_msg(
-                "We received the voice note. Please wait a few seconds while we send it to Twitter. Please don't send me anything else until you receive a reply from me.")
+            self.send_msg(get_string("voice_received"))
             if message.voice is not None:
                 archivo = message.voice
             else:
@@ -74,10 +74,9 @@ class TGBot:
             converter.convert(filename, duration)
             try:
                 self.tw.tweet(filename + ".mp4")
-                self.send_msg(
-                    "Audio sent. If you were replying to a Tweet, send \"/cancel\" to exit reply mode. Tweet text is now empty.")
+                self.send_msg(get_string("audio_sent"))
             except KeyError as e:
-                self.send_msg("Audio could not be sent. Please check that you can send DM to that user.")
+                self.send_msg(get_string("audio_not_sent"))
             os.remove(filename + ".ogg")
             os.remove(filename + ".mp4")
 
@@ -91,9 +90,8 @@ class TGBot:
             if message.text == self.link_key:
                 self.cfg.telegram_user_id = message.from_user.id
                 self.user = message.from_user.id
-                print("Bot linked to " + str(message.from_user.id) + " (" + message.from_user.first_name + ")")
-                self.send_msg(
-                    "Bot successfully linked. You can send me voice notes and I will Tweet them as a video or send me a link to a Tweet and then the voice note and I will tweet them as a reply to the specified Tweet.\nYou can also add text to the tweet using \"/text <your text here>\". To remove the text, just send that command with no text.\nSend Direct messages with /dm <user>. @ is not needed.")
+                print(get_string("bot_linked_console").format(message.from_user.id, message.from_user.first_name))
+                self.send_msg(get_string("bot_linked_message"))
                 self.cfg.save_settings("config.cfg")
         else:
             if message.from_user.id == self.user:
@@ -103,14 +101,13 @@ class TGBot:
                     foo, tweet_id = url.rsplit("/", 1)
                     tweet_text, user = self.tw.set_reply(tweet_id)
                     if tweet_text is not None:
-                        self.send_msg(
-                            "Now replying to: @" + user + ": " + tweet_text + "\nTo post the audio as a tweet instead of a reply, send \"/cancel\"")
+                        self.send_msg(get_string("now_replying").format(user, tweet_text))
                     else:
-                        self.send_msg("The tweet you sent seems to not exist.")
+                        self.send_msg(get_string("tweet_doesnt_exist"))
                 else:
                     if message.text == "/cancel":
                         self.tw.set_reply(None)
-                        self.send_msg("Now posting as a Tweet.")
+                        self.send_msg(get_string("cancel_reply"))
                     elif message.text.startswith("/text"):
                         if message.text == "/text" or message.text == "/text ":
                             text = ""
@@ -129,9 +126,9 @@ class TGBot:
 
                         self.tw.set_text(text)
                         if text == "":
-                            self.send_msg("Text cleared.")
+                            self.send_msg(get_string("text_cleared"))
                         else:
-                            self.send_msg("Text set to: " + text)
+                            self.send_msg(get_string("text_set").format(text))
                     elif message.text.startswith("/dm"):
                         if message.text == "/dm" or message.text == "/dm ":
                             user = None
@@ -140,30 +137,13 @@ class TGBot:
                             user = user.replace("@", "")
                         user = self.tw.set_dm_user(user)
                         if user is None:
-                            self.send_msg("DM cancelled.")
+                            self.send_msg(get_string("dm_cancel"))
                         else:
-                            self.send_msg("Sending DM to @" + user + ". Send /dm with no user to exit DM mode.")
+                            self.send_msg(get_string("sending_dm").format(user))
                     elif message.text == "/help":
-                        self.send_msg("""Available commands:
-· /text <text> - Sets the text for your next Tweet or DM.
-· /dm <user> - Sends audios to a user through DM instead of posting Tweets. Sending no user or a nonexisting one will exit DM mode.
-· Send a link to a Tweet and I'll reply to that one.
-· /cancel - Exits reply mode and posts next audios as a normal Tweet.
-· Send an audio or a music file and I will post that audio with the previous configurations. If the file is longer than 2:20 mins, it will be cut at that time.
-· /help - Shows this help.
-· /about - Shows the about page.""")
+                        self.send_msg(get_string("help"))
                     elif message.text == "/about":
-                        self.send_msg("""*About:*
-*AudiosToTwitter v""" + get_version() + """*
-
-Created by: [rogama25](https://twitter.com/rogama25)
-With help from [IceWildcat](https://github.com/IceWildcat)
-
-[Check the project's official site.](https://github.com/rogama25/AudiosToTwitter)
-
-Report any bugs at [my GitHub repo](https://github.com/rogama25/audiosToTwitter/issues/new)
-
-*With ❤️ from Spain*""", parse_mode="Markdown", disableweb=True)
+                        self.send_msg(get_string("about").format(get_version()), parse_mode="Markdown", disableweb=True)
 
     def send_msg(self, text: str, parse_mode=None, disableweb=False):
         """Sends a Telegram message to the linked user

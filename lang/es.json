@@ -1,7 +1,7 @@
 {
   "lang_name": "Spanish",
   "translator": "rogama25",
-  "about": "*Acerca de:*\n*AudiosToTwitter v{0}*\n\nCreado por: [rogama25](https://twitter.com/rogama25)\nCon ayuda de [IceWildcat](https://github.com/IceWildcat)\n\n[Échale un vistazo a la web oficial del proyecto](https://github.com/rogama25/AudiosToTwitter)\n\nInforma de bugs en [el repositorio de Github](https://github.com/rogama25/audiosToTwitter/issues/new)\n\n*Con ❤️, desde España*",
+  "about": "*Acerca de:*\n*AudiosToTwitter v{0}*\n\nCreado por: [rogama25](https://twitter.com/rogama25)\nCon ayuda de [IceWildcat](https://github.com/IceWildcat)\n\n[Échale un vistazo a la web oficial del proyecto](https://github.com/rogama25/AudiosToTwitter)\n\nInforma de bugs en [el repositorio de Github](https://github.com/rogama25/audiosToTwitter/issues/new)\n\n*Con \u2764\ufe0f, desde España*",
   "attribute_missing": "Falta {0}. Configúralo antes de iniciar el bot.",
   "audio_not_sent": "No se ha podido enviar el audio. Comprueba que puedes enviar MD a ese usuario.",
   "audio_sent": "Audio enviado. Si estabas respondiendo a un Tweet, envía \"/cancel\" para salir del modo de respuesta. El texto está ahora vacío.",

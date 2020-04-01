@@ -14,28 +14,35 @@ def get_available():
             with open(file, "r") as fileobject:
                 lang_object = json.load(fileobject)
                 if "lang_name" in lang_object:
-                    langs[filename] = lang_object["lang_name"]
+                    langs[filename.replace(".json", "")] = lang_object["lang_name"]
     return langs
 
 
 def get_loaded():
     global loaded_langs
-    l = []
+    lang = []
     for e in loaded_langs:
-        l.append(e)
-    return l
+        lang.append(e)
+    return lang
 
 
-def get_string(string, lang = None):
+def get_string(string, lang=None):
+    """
+
+    :return: str
+    :rtype: str
+    """
     if lang is None:
         global selected
         lang = selected
+    load = get_loaded()
+    aval = get_available()
     if lang in get_loaded():
         global loaded_langs
         return loaded_langs[lang].strings[string]
     if lang in get_available():
-        l = Language(lang)
-        return l.strings[string]
+        lang_obj = Language(lang)
+        return lang_obj.strings[string]
     else:
         return get_string(string, "en")
 
@@ -49,7 +56,7 @@ class Language:
             raise NameError("Language not available.")
         self.name = name
         filename = os.path.join(get_lang_dir(), name + ".json")
-        with open(filename, "r") as file:
+        with open(filename, "r", encoding="utf-8") as file:
             self.strings = json.load(file)
         global loaded_langs
         loaded_langs[name] = self
