@@ -1,4 +1,32 @@
 {
   "lang_name": "English",
-  "translator": "rogama25"
+  "translator": "rogama25",
+  "bot_started": "Bot successfully started. Do CTRL-C to stop.",
+  "register_key": "Please send your bot the following code as a Telegram message: {0}",
+  "bot_stopped": "Bot stopped. It may be because you pressed CTRL-C or because an error occurred. Press enter.",
+  "settings_corrupt": "Settings file appears to be corrupt.",
+  "telegram_notnumeric": "Telegram ID was not a numeric and was not saved.",
+  "missing_settings": "Missing settings.",
+  "settings_info": "Settings editor. Press the following numbers to edit settings.",
+  "edit_tg_key": "[{0}] Edit Telegram bot API key.",
+  "unlink_tg": "[{0}] Unlink Telegram bot from current user.",
+  "edit_tw_consumer": "[{0}] Edit Twitter consumer keys.",
+  "edit_tw_access": "[{0}] Edit Twitter access tokens.",
+  "start_bot": "[{0}] Restart bot.",
+  "exit": "[{0}] Exit.",
+  "input_tg_key": "Paste the new bot key (press enter to return without changing): ",
+  "unlink_tg_confirm": "Are you sure you want to unlink from the current Telegram user? Press y to unlink:",
+  "input_tw_consumer": "Paste the new Twitter consumer key (press enter to ask for secret key without changing): ",
+  "input_tw_consumer_secret": "Paste the new Twitter consumer secret (press enter to return without changing): ",
+  "input_tw_access": "Paste the new Twitter access token (press enter to ask for secret key without changing): ",
+  "input_tw_access_secret": "Paste the new Twitter access secret (press enter to return without changing): ",
+  "attribute_missing": "{0} is missing. Please set it before trying to start the bot.",
+  "return_menu": "Press enter to return to menu.",
+  "ffmpeg_corrupt": "ffmpeg zip file detected but it's corrupt. We'll have to download it again.",
+  "download_ffmpeg": "Do you want to download ffmpeg now? This will download around 60MiB of data. [y/n] ",
+  "downloading_ffmpeg": "Downloading FFMPEG. Please wait...",
+  "new_ffmpeg": "New ffmpeg version available. Installed: {0} New version: {1}",
+  "update_ffmpeg": "Do you want to update ffmpeg now? This will download around 60MiB of data. [y/n] ",
+  "downloading_background": "Background not found on disk. Downloading it, please wait..."
+
 }

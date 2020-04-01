@@ -7,6 +7,7 @@ import re
 import twitter_
 from util import press_enter
 import converter
+from languages import get_string
 
 
 def main():
