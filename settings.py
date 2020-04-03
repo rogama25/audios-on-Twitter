@@ -76,7 +76,8 @@ class Settings:
             print(get_string("edit_tw_consumer").format(3))
             print(get_string("edit_tw_access").format(4))
             print(get_string("start_bot").format(5))
-            print(get_string("exit").format(6))
+            print(get_string("change_language").format(6))
+            print(get_string("exit").format(7))
             option = input()
             if option == '1':
                 inp = input(get_string("input_tg_key"))
@@ -110,11 +111,11 @@ class Settings:
                         attr = attr.capitalize()
                         print(get_string("attribute_missing").format(attr))
                     input(get_string("return_menu"))
-            if option == '6':
+            if option == '7':
                 if self.attributes_complete():
                     self.save_settings(get_config_dir() + "config.cfg")
                 sys.exit()
-            if option == '7':
+            if option == '6':
                 self.language_selector()
 
     def save_settings(self, file: str):

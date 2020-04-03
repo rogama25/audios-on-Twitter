@@ -10,6 +10,7 @@
   "bot_started": "Bot successfully started. Do CTRL-C to stop.",
   "bot_stopped": "Bot stopped. It may be because you pressed CTRL-C or because an error occurred. Press enter.",
   "cancel_reply": "Now posting as a Tweet.",
+  "change_language": "[{0}] Change language",
   "dm_cancel": "DM cancelled.",
   "download_ffmpeg": "Do you want to download ffmpeg now? This will download around 60MiB of data. [y/n] ",
   "downloading_background": "Background not found on disk. Downloading it, please wait...",

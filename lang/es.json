@@ -10,6 +10,7 @@
   "bot_started": "Bot iniciado. Pulsa CTRL-C para detener.",
   "bot_stopped": "Bot detenido. Puede deberse a que lo has detenido o a un error. Pulsa enter.",
   "cancel_reply": "Los próximos audios se publicarán como Tweets.",
+  "change_language": "[{0}] Cambiar idioma",
   "dm_cancel": "MD cancelado. Los próximos audios se publicarán como Tweets",
   "download_ffmpeg": "¿Quieres descargar ffmpeg ahora? Se descargarán unos 60 MB de datos. [y/n] ",
   "downloading_background": "No se ha encontrado el fondo. Descargándolo, espera...",
