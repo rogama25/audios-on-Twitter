@@ -143,7 +143,7 @@ class Settings:
         missing = []
         for attr, value in self.__dict__.items():
             if value is None:
-                if attr is not "telegram_user_id":
+                if attr != "telegram_user_id":
                     missing.append(attr)
         if len(missing) == 0:
             if return_values:
