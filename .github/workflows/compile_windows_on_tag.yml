@@ -1,0 +1,50 @@
+name: Compile for Windows on tag push
+
+on:
+  push:
+    tags:
+      - 'v**'
+
+jobs:
+  build:
+
+    runs-on: windows-latest
+
+    steps:
+    - uses: actions/checkout@v1
+    - name: Set up Python 3.8
+      uses: actions/setup-python@v1
+      with:
+        python-version: 3.8
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        python -m pip install -r requirements.txt
+        pip install pyinstaller
+    - name: build with pyinstaller
+      run: |
+        pyinstaller AudiosToTwitter.spec
+    - name: Create windows zip
+      run: |
+        python .github/create_zip.py
+    - name: Create Release
+      id: create_release
+      uses: actions/create-release@latest
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
+      with:
+        tag_name: ${{ github.ref }}
+        release_name: Release ${{ github.ref }}
+        body: Default action body
+        draft: true
+        prerelease: false
+    - name: Upload Release Asset
+      id: upload-release-asset 
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps 
+        asset_path: ./windows.zip
+        asset_name: windows.zip
+        asset_content_type: application/zip
