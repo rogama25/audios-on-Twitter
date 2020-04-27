@@ -3,7 +3,7 @@ name: Compile for Windows on tag push
 on:
   push:
     tags:
-      - 'v*'
+      - 'v**'
 
 jobs:
   build:
@@ -36,7 +36,7 @@ jobs:
         tag_name: ${{ github.ref }}
         release_name: Release ${{ github.ref }}
         body: Default action body
-        draft: false
+        draft: true
         prerelease: false
     - name: Upload Release Asset
       id: upload-release-asset 
