@@ -108,3 +108,4 @@ venv.bak/
 media/*
 !media/img.png
 ffmpeg.exe
+!AudiosToTwitter.spec
