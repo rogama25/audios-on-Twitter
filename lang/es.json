@@ -20,6 +20,7 @@
   "edit_tw_consumer": "[{0}] Editar claves de consumidor de Twitter (consumer).",
   "exit": "[{0}] Salir.",
   "ffmpeg_corrupt": "Se ha encontrado el zip de ffmpeg pero está corrupto. Lo descargaremos de nuevo.",
+  "ffmpeg_not_installed": "ffmpeg no está instalado y el programa no puede funcionar sin él.",
   "help": "Comandos disponibles:\n· /text <texto> - Establece el texto para el próximo Tweet o MD.\n· /dm <usuario> - Envía audios a un usuario a través de MD en vez de publicarlos como Tweets. Si no se indica un usuario o se indica uno que no existe, se sale del modo MD.\n· Envía un link a un Tweet para responder con los próximos audios.\n· /cancel - Sale del modo de respuesta y los próximos audios se envían como Tweets.\n· Envía un audio o un archivo de música y lo enviaremos, dependiendo de los comandos usados. La duración máxima es 2:20, si es más largo, se cortarán automáticamente.\n· /help - Muestra esta ayuda.\n· /about - Muestra la página de acerca de.",
   "input_tg_key": "Pega la nueva clave del bot (pulsa enter para volver sin cambiarla): ",
   "input_tw_access": "Pega la nueva clave de acceso de Twitter (pulsa enter para introducir la secreta sin cambiarla): ",

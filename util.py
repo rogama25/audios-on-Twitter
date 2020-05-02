@@ -46,6 +46,7 @@ def download_ffmpeg():
             char = input(get_string("download_ffmpeg"))
             while True:
                 if char.lower() == "n":
+                    print(get_string("ffmpeg_not_installed"))
                     sys.exit(1)
                 if char.lower() == "y":
                     break
@@ -88,7 +89,7 @@ def download_ffmpeg():
             char = input(get_string("update_ffmpeg"))
             while True:
                 if char.lower() == "n":
-                    sys.exit(1)
+                    return
                 if char.lower() == "y":
                     break
                 char = input("[y/n] ")

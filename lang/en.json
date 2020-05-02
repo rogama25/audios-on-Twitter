@@ -20,6 +20,7 @@
   "edit_tw_consumer": "[{0}] Edit Twitter consumer keys.",
   "exit": "[{0}] Exit.",
   "ffmpeg_corrupt": "ffmpeg zip file detected but it's corrupt. We'll have to download it again.",
+  "ffmpeg_not_installed": "ffmpeg is not installed and the program can't continue without it.",
   "help": "Available commands:\n· /text <text> - Sets the text for your next Tweet or DM.\n· /dm <user> - Sends audios to a user through DM instead of posting Tweets. Sending no user or a nonexisting one will exit DM mode.\n· Send a link to a Tweet and I'll reply to that one.\n· /cancel - Exits reply mode and posts next audios as a normal Tweet.\n· Send an audio or a music file and I will post that audio with the previous configurations. If the file is longer than 2:20 mins, it will be cut at that time.\n· /help - Shows this help.\n· /about - Shows the about page.",
   "input_tg_key": "Paste the new bot key (press enter to return without changing): ",
   "input_tw_access": "Paste the new Twitter access token (press enter to ask for secret key without changing): ",
